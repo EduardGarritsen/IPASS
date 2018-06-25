@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>menukaart</title>
+  </head>
+  <body>
+    <h1>menukaart</h1>
+    <div id=menuTabel></div>
+    <script>
+    
+	    fetch("restservices/bestellen/inzien")
+		    .then(response => response.json())
+		    .then(function(menukaart) {
+	    		console.log(menukaart);
+	    	var table = '<tr><td>Gerecht</td> <td>Prijs</td> <td>Beschrijving</td> <td>Bestellen</td></tr>';
+	    	
+	        for (var r = 0; r < menukaart.length; r++) {
+	          table += '<tr>';
+	          for(var c = 0; c <= 0; c++){
+	            table += '<td>' + menukaart[r].Gerecht + '</td>';
+	            table += '<td>' + menukaart[r].Prijs + '</td>';
+	            table += '<td>';
+	            if(menukaart[r].beschrijving != undefined){
+	            	table += menukaart[r].beschrijving;
+	            }
+	            table += '</td>';
+	            table += '<td><input type="button" value="bestellen" onclick=""></td>';
+	          }
+	          table += '</tr>';
+	        }
+	        document.getElementById("menuTabel").innerHTML += ('<table border="solid 1px">' + table + '</table>');
+	    });
+    </script>
+  </body>
+</html>

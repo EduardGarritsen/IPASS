@@ -1,33 +1,25 @@
 package applicatie.dao;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
 
 public class MysqlBaseDao {
-	private String dbURL = "jdbc:mysql://localhost:3306/slufter?useSSL=false";
-	private String dbUser = "root";
-	private String dbPass = "geheim";
-	
-	protected Connection myConn = getConnection();
-    
     protected Connection getConnection() {
+    	Connection result = null;
     	
     	try {
-    		Connection myConn = DriverManager.getConnection(dbURL, 
-    				dbUser, dbPass);
-            if (myConn != null) {
-                return myConn;
-            }
+    		InitialContext  ic = new InitialContext();
+    		DataSource ds = (DataSource) ic.lookup("java:comp/env/jdbc/MysqlDS");
+    		result = ds.getConnection();
     	}
-    	catch (SQLException ex) {
-    		System.out.println("Geen Connectie :(");
+    	catch (Exception ex) {
+    		System.out.println("Geen Connectie :(,omdat euh:");
+    		ex.printStackTrace();
     	}
-    	return null;
+    	return result;
     }
     
-    public void closeConnection() {
-    	
-    }
 }
 

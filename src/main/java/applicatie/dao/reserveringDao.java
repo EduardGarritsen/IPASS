@@ -1,7 +1,10 @@
 package applicatie.dao;
 
+import java.util.ArrayList;
+
 import applicatie.model.*;
 
 public interface reserveringDao {
-	public reservering insertReservering(int reservering_Id, String datum, String tijd, int tafel, int klant_Id);
+	public ArrayList<reservering> findReserveringen();
+	public reservering insertReservering(reservering reservering);
 }

@@ -50,5 +50,9 @@ public class klant {
 		this.email = email;
 	}
 	
-	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return String.format("Klant %s, mail: %s, ww: %s", naam, email, wachtwoord);
+	}
 }

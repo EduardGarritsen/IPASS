@@ -25,6 +25,7 @@ public class klantDaoImpl extends MysqlBaseDao implements klantDao {
 					myRs.getString("Naam"),
 					myRs.getString("Wachtwoord"),
 					myRs.getString("email"));
+				System.out.println(k);
 			}
 			con.close();
 		} catch (SQLException sqle) {

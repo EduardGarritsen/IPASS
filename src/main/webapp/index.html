@@ -1,40 +1,46 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Dynamic Example</title>
+		<title>Inloggen Slufter</title>
 		<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-		<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-		<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!--	<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  -->		<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-		<link rel="stylesheet" type="text/css" href="css/Style.css">
 	</head>
 	<body>
-<!--  		<form action="DynamicServlet.do" method="get">
-			<div>
-				<input type="text" name="username" />
-				<input type="submit" value="Go!" />
-			</div>
-		</form>
--->
-			<div class="container">
-		    	<div class="row">
-		        <div class="col-md-offset-5 col-md-3">
-		        	<form action="LoginServlet.do" method="get">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-offset-5 col-md-3">
+		        	<form id="mylogin">
 			            <div class="form-login">
 			            <h4>Welkom</h4>
-			            <input type="text" name="email" class="form-control input-sm chat-input" placeholder="email" />
+			            <input type="text" name="email" id="email" placeholder="email" />
 			            </br>
-			            <input type="text" name="wachtwoord" class="form-control input-sm chat-input" placeholder="wachtwoord" />
+			            <input type="text" name="wachtwoord" id="wachtwoord" placeholder="wachtwoord" />
 			            </br>
-			            <div class="wrapper">
-			            <span class="group-btn">     
-			                <input class="btn btn-primary btn-md" type="submit" value="login" />
-			            </span>
-			            </div>
+			            <input id="LoginButton" type="submit" value="login" />
 			            </div>
 			    	</form>
+			    	<div id="lol"></div>
 		        </div>
 		    </div>
 		</div>
+		<script>		
+		document.querySelector("#LoginButton").addEventListener("click", function() {
+			
+			var formData = new FormData(document.querySelector("#mylogin"));
+			var encData = new URLSearchParams(formData.entries());
+			
+			fetch("restservices/index/inloggen", { method: 'POST', body: encData})
+				.then(response => response.json())
+				.then(function(klantGegevens){
+				});
+		});
+			
+		
+			
+			
+		
+		</script>
 	</body>
 </html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Reserveringen inzien</title>
+  </head>
+  <body>
+    <h1>Reserveringen inzien</h1>
+    <div id=ReserveringTabel></div>
+    <script>
+    
+	    fetch("restservices/reservering/inzien")
+		    .then(response => response.json())
+		    .then(function(reserveringen) {
+	    		console.log(reserveringen);
+	    	var table = '<tr><td>bestelling Id</td> <td>Datum</td> <td>Tijd</td> <td>Tafel</td> <td>klant_Id</td></tr>';
+	    	
+	        for (var r = 0; r < reserveringen.length; r++) {
+	          table += '<tr>';
+	          for(var c = 0; c <= 0; c++){
+	            table += '<td>' + reserveringen[r].Reservering_Id + '</td>';
+	            table += '<td>' + reserveringen[r].Datum + '</td>';
+	            table += '<td>' + reserveringen[r].Tijd + '</td>';
+	            table += '<td>' + reserveringen[r].Tafel + '</td>';
+	            table += '<td>' + reserveringen[r].Klant_Id + '</td>';
+	          }
+	          table += '</tr>';
+	        }
+	        document.getElementById("ReserveringTabel").innerHTML += ('<table border="solid 1px">' + table + '</table>');
+	    });
+    </script>
+  </body>
+</html>
