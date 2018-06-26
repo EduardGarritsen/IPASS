@@ -4,7 +4,12 @@
     <title>menukaart</title>
   </head>
   <body>
+  	<lo>
+		<li><a href='reserveren.html'>Reserveren</a></li>
+		<li><a href='menukaart.html'>Bestellen</a></li>
+	</lo>
     <h1>menukaart</h1>
+    <p>Tafelnummer:<input type="number" name="Tafel" min="1" max="15" placeholder="1" /></p>
     <div id=menuTabel></div>
     <script>
     
@@ -17,19 +22,24 @@
 	        for (var r = 0; r < menukaart.length; r++) {
 	          table += '<tr>';
 	          for(var c = 0; c <= 0; c++){
-	            table += '<td>' + menukaart[r].Gerecht + '</td>';
+	            table += '<td class="gerecht">' + menukaart[r].Gerecht + '</td>';
 	            table += '<td>' + menukaart[r].Prijs + '</td>';
 	            table += '<td>';
 	            if(menukaart[r].beschrijving != undefined){
 	            	table += menukaart[r].beschrijving;
 	            }
 	            table += '</td>';
-	            table += '<td><input type="button" value="bestellen" onclick=""></td>';
+	            table += '<td><input type="button" value="bestellen" onclick="bestellen()"></td>';
 	          }
 	          table += '</tr>';
 	        }
-	        document.getElementById("menuTabel").innerHTML += ('<table border="solid 1px">' + table + '</table>');
+	        document.getElementById("menuTabel").innerHTML += ('<table border="solid 1px" id="menuKaart">' + table + '</table>');
 	    });
+	    
+	    function bestellen() {
+	        var item = $(".menuKaart").find(".gerecht").text();
+    		console.log(item);	// Outputs the answer
+	    }
     </script>
   </body>
 </html>

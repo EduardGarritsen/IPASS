@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>bestelling Afleveren</title>
+</head>
+<body>
+	<lo>
+		<li><a href='reserverengenInzien.html'>Reserveren Inzien</a></li>
+		<li><a href='bestellingAfleveren.html'>Afleveren</a></li>
+	</lo>
+	<h1>bestelling Afleveren</h1>
+	<div id=AfleverenTabel></div>
+	<script>
+		fetch("restservices/bestellen/afleveren")
+			.then(response => response.json())
+			.then(function(bestellingenGereed) {
+				console.log(bestellingenGereed);
+				var table = '<tr><td>bestelling Id</td> <td>Tafel</td> <td>gerecht</td> <td>Tafel</td> <td>prijs</td> <td>Klant_Id</td></tr>';
+		    	
+			    for (var r = 0; r < bestellingen.length; r++) {
+			    	table += '<tr>';
+			        for(var c = 0; c <= 0; c++){
+			        	table += '<td>' + bestellingen[r].bestellingId + '</td>';
+			            table += '<td>' + bestellingen[r].Tafel + '</td>';
+			            table += '<td>' + bestellingen[r].gerecht + '</td>';
+			            table += '<td>' + bestellingen[r].prijs + '</td>';
+			            table += '<td>' + bestellingen[r].Klant_Id + '</td>';
+			          }
+			          table += '</tr>';
+			        }
+			        document.getElementById("BestellingenTabel").innerHTML += ('<table border="solid 1px">' + table + '</table>');
+		});
+	</script>
+</body>
+</html>

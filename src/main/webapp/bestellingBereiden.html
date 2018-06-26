@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Bestelling bereiden</title>
+	</head>
+	<body>
+		<h1>Bestellingen</h1>
+		<div id=BestellingenTabel></div>
+		<script>
+		
+		fetch("restservices/bestelling/bereiden")
+		   	.then(response => response.json())
+		    .then(function(bestellingen) {
+	    		console.log(bestellingen);
+	    	var table = '<tr><td>bestelling Id</td> <td>Tafel</td> <td>gerecht</td> <td>Tafel</td> <td>prijs</td> <td>Klant_Id</td></tr>';
+	    	
+		    for (var r = 0; r < bestellingen.length; r++) {
+		    	table += '<tr>';
+		        for(var c = 0; c <= 0; c++){
+		        	table += '<td>' + bestellingen[r].bestellingId + '</td>';
+		            table += '<td>' + bestellingen[r].Tafel + '</td>';
+		            table += '<td>' + bestellingen[r].gerecht + '</td>';
+		            table += '<td>' + bestellingen[r].prijs + '</td>';
+		            table += '<td>' + bestellingen[r].Klant_Id + '</td>';
+		          }
+		          table += '</tr>';
+		        }
+		        document.getElementById("BestellingenTabel").innerHTML += ('<table border="solid 1px">' + table + '</table>');
+		    	})
+			.catch(function(error){
+				console.log(error);
+	    });
+		</script>
+	</body>
+</html>

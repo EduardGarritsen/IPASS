@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Medewerker login</title>
+</head>
+<body>
+	<h1>Medewerker inloggen</h1>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-offset-5 col-md-3">
+		       	<form id="login">
+		            <div class="login">
+		            <input type="text" name="email" placeholder="email" />
+		            </br>
+		            <input type="text" name="wachtwoord" placeholder="wachtwoord" />
+		            </br>
+		            <input type="button" onclick="check(this.form)" value="login" />
+		            </div>
+		    	</form>
+		    	<script>
+		    		function check(form){
+		    			if(form.email.value == "ober@gmail.com" &&  form.wachtwoord.value == "geheim") {
+		    				window.location.assign('reserveringenInzien.html');
+		    			}
+		    			else if (form.email.value == "kok@gmail.com" &&  form.wachtwoord.value == "geheim") {
+		    				window.location.assign('bestellingBereiden.html');
+		    			}
+		    		}
+		    	</script>
+	       </div>
+		</div>
+	</div>
+</body>
+</html>
