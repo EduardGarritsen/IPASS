@@ -1,33 +1,35 @@
 package applicatie.dao;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 import applicatie.model.bestelling;
 
 public class bestellingDaoImpl extends MysqlBaseDao implements bestellingDao {
 	
-	public bestelling selectBestellingByStatusAndId(int bestelling_ID, String status) {
+	public ArrayList<bestelling> selectBestellingByStatus(String status) {
+		ArrayList<bestelling> bestellingen = new ArrayList<bestelling>();
 		try (Connection con = super.getConnection()) {
 			PreparedStatement stmt = con.prepareStatement(
-					"SELECT * FROM slufter.bestelling WHERE Bestelling_ID = ? AND Status = ?;");
-			stmt.setInt(1, bestelling_ID);
-			stmt.setString(2, status);
+					"SELECT * FROM slufter.bestelling WHERE Status = ?;");
+			stmt.setString(1, status);
 			ResultSet rs = stmt.executeQuery();
 			
-			if (rs.next()) {
+			while (rs.next()) {
+				int bestelling_ID = rs.getInt("Bestelling_ID");
 				int Tafel = rs.getInt("Tafel");
 				String gerecht = rs.getString("Gerecht");
 				Float prijs = rs.getFloat("Prijs");
 				int klant_Id = rs.getInt("Klant_ID");
 				bestelling bestelling = new bestelling(
 						bestelling_ID, Tafel, gerecht, prijs, status, klant_Id);
-				return bestelling;
+				bestellingen.add(bestelling);
 			}
 			con.close();
 		} catch (SQLException sqle) {
 			sqle.printStackTrace();
 		}
-		return null;
+		return bestellingen;
 	}
 
 	public bestelling insertBestelling(bestelling bestelling) {
@@ -49,13 +51,14 @@ public class bestellingDaoImpl extends MysqlBaseDao implements bestellingDao {
 		return bestelling;
 	}
 	
-	public bestelling updateBestelling(bestelling bestelling) {
+	public bestelling updateBestelling(int bestelling_Id, String status) {
+		bestelling bestelling = new bestelling();
 		try (Connection con = super.getConnection()) {
 			PreparedStatement stmt = con.prepareStatement(
 					"UPDATE `slufter`.`bestelling` SET `Status` = ? " +
 					" WHERE (`Bestelling_ID` = ?)");
-			stmt.setInt(2, bestelling.getBestelling_ID());
-			stmt.setString(1, bestelling.getStatus());
+			stmt.setInt(2, bestelling_Id);
+			stmt.setString(1, status);
 			stmt.execute();
 			con.close();
 		}catch (SQLException sqle) {
