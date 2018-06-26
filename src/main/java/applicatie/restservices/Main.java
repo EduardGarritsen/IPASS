@@ -9,12 +9,14 @@ public class Main
         menuDao mDao = new menuDaoImpl();
         klantDao kDao = new klantDaoImpl();
         reserveringDao rDao = new reserveringDaoImpl();
+        bestellingDao dDao = new bestellingDaoImpl();
         
         System.out.println(kDao.findKlantByEmailAndWachtwoord("willemvonk@gmail.com", "Geheim").getNaam());
         
         for(int i = 0; i < mDao.findMenukaart().size(); i ++) {
         	System.out.println(mDao.findMenukaart().get(i).getGerecht());
         }
+       
         
         for(int i = 0; i < rDao.findReserveringen().size(); i ++) {
         	System.out.println(rDao.findReserveringen().get(i).getDatum());

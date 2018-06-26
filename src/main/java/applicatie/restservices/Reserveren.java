@@ -34,4 +34,20 @@ public class Reserveren {
 		
 		return reserveringen.toString();
 	}
+	
+	@POST
+	@Path("/reserveren")
+	public void Reserveren(@FormParam("datum") String datum, @FormParam("Tijd") String Tijd, @FormParam("Tafel") int Tafel, @FormParam("Klant_Id") int klant_Id) {
+		
+		reserveringDao rDao = new reserveringDaoImpl();
+		int reservering_Id = 0;		
+		
+		for (reservering a : rDao.findReserveringen()) {
+			reservering_Id++;
+		}
+		
+		reservering r = new reservering(reservering_Id, datum, Tijd, Tafel, klant_Id);
+		
+		rDao.insertReservering(r);
+	}
 }

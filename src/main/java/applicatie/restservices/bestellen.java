@@ -6,15 +6,14 @@ import javax.json.JsonArrayBuilder;
 import javax.json.JsonObjectBuilder;
 import javax.ws.rs.*;
 
-import applicatie.dao.menuDao;
-import applicatie.dao.menuDaoImpl;
-import applicatie.model.menu;
+import applicatie.dao.*;
+import applicatie.model.*;
 
 @Path("/bestellen")
 public class bestellen {
 	@GET
 	@Path("/inzien")
-	public String getReserveringen() {
+	public String getMenukaart() {
 			
 		menuDao mDao = new menuDaoImpl();
 		JsonArrayBuilder jab = Json.createArrayBuilder();
