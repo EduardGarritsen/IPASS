@@ -30,7 +30,7 @@ public class bestellingDaoImpl extends MysqlBaseDao implements bestellingDao {
 			sqle.printStackTrace();
 		}
 		return bestellingen;
-	}
+	}		
 
 	public bestelling insertBestelling(bestelling bestelling) {
 		try (Connection con = super.getConnection()) {

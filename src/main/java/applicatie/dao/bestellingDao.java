@@ -10,4 +10,5 @@ public interface bestellingDao {
 	public bestelling insertBestelling(bestelling bestelling);
 	public bestelling updateBestelling(int bestelling_ID, String status);
 	public bestelling deleteBestellingById(int bestelling_ID);
+	public void getRows();
 }

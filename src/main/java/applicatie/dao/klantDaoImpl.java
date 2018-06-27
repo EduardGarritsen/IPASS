@@ -33,4 +33,28 @@ public class klantDaoImpl extends MysqlBaseDao implements klantDao {
 		}
 		return k;
 	}
+	
+	public klant findKlantByKlantId(int klant_Id) {
+		
+		klant k = null;
+		try (Connection con = super.getConnection()) {
+			PreparedStatement stmt = con.prepareStatement("SELECT * FROM slufter.klant " + 
+					"WHERE Klant_ID = '" + klant_Id + "';");
+			ResultSet myRs = stmt.executeQuery();
+			
+			
+			while (myRs.next()) {
+				k = new klant(
+					myRs.getInt("Klant_ID"),
+					myRs.getString("Naam"),
+					myRs.getString("Wachtwoord"),
+					myRs.getString("email"));
+				System.out.println(k);
+			}
+			con.close();
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+		}
+		return k;
+	}
 }
