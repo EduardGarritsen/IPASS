@@ -6,31 +6,42 @@
 </head>
 <body>
 	<lo>
-		<li><a href='reserverengenInzien.html'>Reserveren Inzien</a></li>
+		<li><a href='reserveringenInzien.html'>Reserveren Inzien</a></li>
 		<li><a href='bestellingAfleveren.html'>Afleveren</a></li>
 	</lo>
 	<h1>bestelling Afleveren</h1>
 	<div id=AfleverenTabel></div>
 	<script>
-		fetch("restservices/bestellen/afleveren")
+		fetch("restservices/bestelling/afleveren")
 			.then(response => response.json())
 			.then(function(bestellingenGereed) {
 				console.log(bestellingenGereed);
-				var table = '<tr><td>bestelling Id</td> <td>Tafel</td> <td>gerecht</td> <td>Tafel</td> <td>prijs</td> <td>Klant_Id</td></tr>';
+				var table = '<tr><td>bestelling Id</td> <td>Tafel</td> <td>gerecht</td> <td>prijs</td> <td>Klant Id</td> <td>Afgeleverd</td></tr>';
 		    	
-			    for (var r = 0; r < bestellingen.length; r++) {
+			    for (var r = 0; r < bestellingenGereed.length; r++) {
 			    	table += '<tr>';
 			        for(var c = 0; c <= 0; c++){
-			        	table += '<td>' + bestellingen[r].bestellingId + '</td>';
-			            table += '<td>' + bestellingen[r].Tafel + '</td>';
-			            table += '<td>' + bestellingen[r].gerecht + '</td>';
-			            table += '<td>' + bestellingen[r].prijs + '</td>';
-			            table += '<td>' + bestellingen[r].Klant_Id + '</td>';
+			        	table += '<td>' + bestellingenGereed[r].bestellingId + '</td>';
+			            table += '<td>' + bestellingenGereed[r].Tafel + '</td>';
+			            table += '<td>' + bestellingenGereed[r].gerecht + '</td>';
+			            table += '<td>' + bestellingenGereed[r].prijs + '</td>';
+			            table += '<td>' + bestellingenGereed[r].klantId + '</td>';
+			            table += '<td><input type="button" value="Afgeleverd" class="click" onclick="isAfgeleverd(' + bestellingenGereed[r].bestellingId + ')"></td>';
 			          }
 			          table += '</tr>';
 			        }
-			        document.getElementById("BestellingenTabel").innerHTML += ('<table border="solid 1px">' + table + '</table>');
-		});
+			        document.getElementById("AfleverenTabel").innerHTML += ('<table border="solid 1px">' + table + '</table>');
+			})
+			.catch(function(error){
+				console.log(error);
+	    });
+		
+		function isAfgeleverd(bestellingId) {
+			var IdURL = new URLSearchParams();
+			IdURL.set("bestellingId", bestellingId);
+			fetch("restservices/bestelling/afgeleverd", { method: 'POST', body: IdURL});
+			location.reload();
+		}
 	</script>
 </body>
 </html>

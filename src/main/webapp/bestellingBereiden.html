@@ -7,12 +7,11 @@
 		<h1>Bestellingen</h1>
 		<div id=BestellingenTabel></div>
 		<script>
-		
 		fetch("restservices/bestelling/bereiden")
 		   	.then(response => response.json())
 		    .then(function(bestellingen) {
 	    		console.log(bestellingen);
-	    	var table = '<tr><td>bestelling Id</td> <td>Tafel</td> <td>gerecht</td> <td>Tafel</td> <td>prijs</td> <td>Klant_Id</td></tr>';
+	    	var table = '<tr><td>bestelling Id</td> <td>Tafel</td> <td>gerecht</td> <td>prijs</td> <td>Klant Id</td> <td>Gereed</td></tr>';
 	    	
 		    for (var r = 0; r < bestellingen.length; r++) {
 		    	table += '<tr>';
@@ -21,7 +20,8 @@
 		            table += '<td>' + bestellingen[r].Tafel + '</td>';
 		            table += '<td>' + bestellingen[r].gerecht + '</td>';
 		            table += '<td>' + bestellingen[r].prijs + '</td>';
-		            table += '<td>' + bestellingen[r].Klant_Id + '</td>';
+		            table += '<td>' + bestellingen[r].klantId + '</td>';
+		            table += '<td><input type="button" value="Gereed" class="click" onclick="isGereed(' + bestellingen[r].bestellingId + ')"></td>';
 		          }
 		          table += '</tr>';
 		        }
@@ -30,6 +30,15 @@
 			.catch(function(error){
 				console.log(error);
 	    });
+		
+		function isGereed(bestelling_Id){
+			
+			var IdURL = new URLSearchParams();
+			IdURL.set("bestellingId", bestelling_Id);
+			fetch("restservices/bestelling/bereden", { method: 'POST', body: IdURL});
+			location.reload();
+		}
+		
 		</script>
 	</body>
 </html>
