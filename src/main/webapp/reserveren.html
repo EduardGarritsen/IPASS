@@ -9,14 +9,28 @@
 			<li><a href='menukaart.html'>Bestellen</a></li>
 		</lo>
 		<img src="img/plattegrond.jpg">
-		<form action="ReserverenServlet.do" method="get">
+		<form id="myReserveren" method="get">
 			<input type="date" name="datum" placehoder="datum" />
 			<input type="time" name="tijd" placeholder="tijdstip" />
 			<input type="number" name="Tafel" min="1" max="15" placeholder="1" />
 			<input type="submit" value="Reserveren" />
 		</form>
 		<script>
-			
+		var event = document.getElementById("#Reserveren");
+			if(event){
+				event.addEventListener("click", function() {
+					var formData = new FormData(document.querySelector("#myReserveren"));
+					conole.log(formData);
+					var encData = new URLSearchParams(formData.entries());
+					conole.log(encData);
+					
+//					fetch("restservices/reservering/reserveren", { method: 'POST', body: encData})
+//						})
+//					.catch(function(error){
+//					console.log(error);
+					});
+				
+			}
 		</script>
 	</body>
 </html>

@@ -2,9 +2,8 @@
 <html>
 	<head>
 		<title>Inloggen Slufter</title>
+		<link rel="stylesheet" type="text/css" href="Style.css">
 		<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<!--	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->
-		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 	</head>
 	<body>
 		<div class="container">
@@ -17,13 +16,20 @@
 			            </br>
 			            <input type="text" name="wachtwoord" id="wachtwoord" placeholder="wachtwoord" />
 			            </br>
-			            <input id="LoginButton" type="submit" value="login" />
+			            <div class="wrapper">
+			            	<span class="group-btn">
+			            		<input id="LoginButton" type="submit" value="login" />
+			            	</span>
+			            </div>
 			            </div>
 			    	</form>
+			    	<a href="medewerkerLogin.html">
+			    		<input value="Inloggen als medewerker" />
+			    	</a>
 		        </div>
 		    </div>
 		</div>
-		<a href="medewerkerLogin.html">Inloggen als medewerker</a>
+		
 		<script>		
 		document.querySelector("#LoginButton").addEventListener("click", function() {
 			

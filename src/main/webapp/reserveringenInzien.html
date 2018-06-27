@@ -15,7 +15,7 @@
 		    .then(response => response.json())
 		    .then(function(reserveringen) {
 	    		console.log(reserveringen);
-	    	var table = '<tr><td>bestelling Id</td> <td>Datum</td> <td>Tijd</td> <td>Tafel</td> <td>klant_Id</td></tr>';
+	    	var table = '<tr><td>bestelling Id</td> <td>Datum</td> <td>Tijd</td> <td>Tafel</td> <td>klant_Id</td> <!--<td>Naam</td>--></tr>';
 	    	
 	        for (var r = 0; r < reserveringen.length; r++) {
 	          table += '<tr>';
@@ -25,6 +25,7 @@
 	            table += '<td>' + reserveringen[r].Tijd + '</td>';
 	            table += '<td>' + reserveringen[r].Tafel + '</td>';
 	            table += '<td>' + reserveringen[r].Klant_Id + '</td>';
+	            //table += '<td>' + reserveringen[r].klant_Naam + '</td>';
 	          }
 	          table += '</tr>';
 	        }

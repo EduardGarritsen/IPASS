@@ -2,12 +2,14 @@
 <html>
   <head>
     <title>menukaart</title>
+    <link rel="stylesheet" type="text/css" href="Style.css">
   </head>
   <body>
-  	<lo>
+  	<ul>
 		<li><a href='reserveren.html'>Reserveren</a></li>
 		<li><a href='menukaart.html'>Bestellen</a></li>
-	</lo>
+		<li class="right"><a href='index.html'>uitloggen</a></li>
+	</ul>
     <h1>menukaart</h1>
     <p>Tafelnummer:<input type="number" name="Tafel" min="1" max="15" placeholder="1" /></p>
     <div id=menuTabel></div>
@@ -17,13 +19,13 @@
 		    .then(response => response.json())
 		    .then(function(menukaart) {
 	    		console.log(menukaart);
-	    	var table = '<tr><td>Gerecht</td> <td>Prijs</td> <td>Beschrijving</td> <td>Bestellen</td></tr>';
+	    	var table = '<tr style="font-weight: bold"><td>Gerecht</td> <td>Prijs</td> <td>Beschrijving</td> <td>Bestellen</td></tr>';
 	    	
 	        for (var r = 0; r < menukaart.length; r++) {
 	          table += '<tr>';
 	          for(var c = 0; c <= 0; c++){
 	            table += '<td class="gerecht">' + menukaart[r].Gerecht + '</td>';
-	            table += '<td>' + menukaart[r].Prijs + '</td>';
+	            table += '<td>&euro;' + menukaart[r].Prijs + ',00</td>';
 	            table += '<td>';
 	            if(menukaart[r].beschrijving != undefined){
 	            	table += menukaart[r].beschrijving;
