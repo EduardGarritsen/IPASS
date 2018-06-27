@@ -32,4 +32,17 @@ public class bestellen {
 			
 			return menukaart.toString();
 		}
+	
+/*	
+	public void bestellen(@FormParam("Tafel") int Tafel, @FormParam("Prijs") int prijs, @FormParam("Klant_Id") int klant_Id) {
+		
+		String status = "afwachting";
+		
+		for
+		
+		bestellingDao bDao = new bestellingDaoImpl();
+		
+		bestelling b = new bestelling(bestelling_ID, Tafel, prijs, status, klant_Id);
+	}
+	*/
 }
