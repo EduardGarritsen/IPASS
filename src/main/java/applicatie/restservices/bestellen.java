@@ -41,5 +41,7 @@ public class bestellen {
 		bestellingDao bDao = new bestellingDaoImpl();
 		
 		bestelling b = new bestelling(Tafel, gerecht, prijs, status, klant_Id);
+		System.out.println(b);
+		bDao.insertBestelling(b);
 	}
 }

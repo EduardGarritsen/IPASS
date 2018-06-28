@@ -46,13 +46,13 @@ public class Reserveren {
 	@POST
 	@Path("/reserveren")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-	public void Reserveren(@FormParam("datum") String datum, @FormParam("tijd") String Tijd, @FormParam("tafel") int Tafel, @FormParam("Klant_Id") int klant_Id) {
+	public void Reserveren(@FormParam("datum") String datum, @FormParam("tijd") String Tijd, @FormParam("Tafel") int Tafel, @FormParam("Klant_Id") int klant_Id) {
 		
 		
 		
 		System.out.println(datum);
 		System.out.println(Tijd);
-		Tafel = 2;
+		System.out.println(Tafel);
 		System.out.println(klant_Id);
 		reserveringDao rDao = new reserveringDaoImpl();
 		
