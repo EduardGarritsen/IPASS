@@ -6,6 +6,7 @@ import javax.json.JsonArrayBuilder;
 import javax.json.JsonObjectBuilder;
 import javax.json.JsonValue;
 import javax.ws.rs.*;
+import javax.ws.rs.core.*;
 
 import applicatie.dao.*;
 import applicatie.model.*;
@@ -44,16 +45,25 @@ public class Reserveren {
 
 	@POST
 	@Path("/reserveren")
-	public void Reserveren(@FormParam("datum") String datum, @FormParam("Tijd") String Tijd, @FormParam("Tafel") int Tafel, @FormParam("Klant_Id") int klant_Id) {
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	public void Reserveren(@FormParam("datum") String datum, @FormParam("tijd") String Tijd, @FormParam("tafel") int Tafel, @FormParam("Klant_Id") int klant_Id) {
 		
+		
+		
+		System.out.println(datum);
+		System.out.println(Tijd);
+		Tafel = 2;
+		System.out.println(klant_Id);
 		reserveringDao rDao = new reserveringDaoImpl();
-		int reservering_Id = 0;		
+		
+		int reservering_Id = 1;		
 		
 		for (reservering a : rDao.findReserveringen()) {
 			reservering_Id++;
 		}
 		
 		reservering r = new reservering(reservering_Id, datum, Tijd, Tafel, klant_Id);
+		System.out.println(r);
 		
 		rDao.insertReservering(r);
 	}

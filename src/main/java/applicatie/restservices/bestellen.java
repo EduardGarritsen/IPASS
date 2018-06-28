@@ -32,17 +32,14 @@ public class bestellen {
 			
 			return menukaart.toString();
 		}
-	
-/*	
-	public void bestellen(@FormParam("Tafel") int Tafel, @FormParam("Prijs") int prijs, @FormParam("Klant_Id") int klant_Id) {
+	@POST
+	@Path("/bestellen")
+	public void bestellen(@FormParam("Gerecht") String gerecht, @FormParam("Tafel") int Tafel, @FormParam("Prijs") double prijs, @FormParam("Klant_Id") int klant_Id) {
 		
 		String status = "afwachting";
 		
-		for
-		
 		bestellingDao bDao = new bestellingDaoImpl();
 		
-		bestelling b = new bestelling(bestelling_ID, Tafel, prijs, status, klant_Id);
+		bestelling b = new bestelling(Tafel, gerecht, prijs, status, klant_Id);
 	}
-	*/
 }

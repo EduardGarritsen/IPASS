@@ -9,7 +9,7 @@ public class Main
         menuDao mDao = new menuDaoImpl();
         klantDao kDao = new klantDaoImpl();
         reserveringDao rDao = new reserveringDaoImpl();
-        bestellingDao dDao = new bestellingDaoImpl();
+        bestellingDao bDao = new bestellingDaoImpl();
         
         System.out.println(kDao.findKlantByEmailAndWachtwoord("willemvonk@gmail.com", "Geheim").getNaam());
         
