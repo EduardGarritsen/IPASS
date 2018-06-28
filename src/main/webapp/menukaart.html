@@ -14,6 +14,8 @@
     <p>Tafelnummer:<input type="number" name="Tafel" min="1" max="15" placeholder="1" /></p>
     <div id=menuTabel></div>
     <script>
+	    var klantId = localStorage.getItem("Klant_Id");
+		console.log(klantId);
     
 	    fetch("restservices/bestellen/inzien")
 		    .then(response => response.json())

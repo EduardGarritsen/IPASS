@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<title>Slufter Reserveren</title>
 	</head>
 	<body>
@@ -9,28 +10,36 @@
 			<li><a href='menukaart.html'>Bestellen</a></li>
 		</lo>
 		<img src="img/plattegrond.jpg">
-		<form id="myReserveren" method="get">
-			<input type="date" name="datum" placehoder="datum" />
-			<input type="time" name="tijd" placeholder="tijdstip" />
-			<input type="number" name="Tafel" min="1" max="15" placeholder="1" />
-			<input type="submit" value="Reserveren" />
+		<form id="myReserveren">
+			<input id="datum" type="date" name="datum" placehoder="datum" />
+			<input id="tijd" type="time" name="tijd" placeholder="tijdstip" />
+			<input id="tafel" type="number" name="Tafel" min="1" max="15" />
+			<input type="submit" value="Reserveren" id="reserveerButton"/>
 		</form>
 		<script>
-		var event = document.getElementById("#Reserveren");
-			if(event){
-				event.addEventListener("click", function() {
-					var formData = new FormData(document.querySelector("#myReserveren"));
-					conole.log(formData);
-					var encData = new URLSearchParams(formData.entries());
-					conole.log(encData);
-					
-//					fetch("restservices/reservering/reserveren", { method: 'POST', body: encData})
-//						})
-//					.catch(function(error){
-//					console.log(error);
-					});
-				
+		
+		var klantId = localStorage.getItem("Klant_Id");
+		console.log(klantId);
+		
+		//var datum = $('#datum').val();
+		//console.log(datum)
+		
+		document.querySelector("#reserveerButton").addEventListener("click", function() {
+			
+			var formData = new FormData(document.querySelector("#myReserveren"))
+			formData.append("Klant_Id", klantId);
+			
+			for (var pair of formData.entries()) {
+			    console.log(pair[0]+ ', ' + pair[1]); 
 			}
+			
+			var encData = new URLSearchParams(formData.entries());
+			fetch("restservices/reservering/reserveren", { method: 'POST', body: encData})
+			.catch(function(error){
+				console.log(error);
+			});
+		});
+			
 		</script>
 	</body>
 </html>
