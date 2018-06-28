@@ -13,6 +13,14 @@ public class bestelling {
 	public bestelling() {
 		
 	}
+	
+	public bestelling(int tafel, String gerecht, double prijs, String status, int klant_Id) {
+		this.tafel = tafel;
+		this.gerecht = gerecht;
+		this.prijs = prijs;
+		this.status = status;
+		this.klant_Id = klant_Id;
+	}
 
 	public bestelling(int bestelling_ID, int tafel, String gerecht, double prijs, String status, int klant_Id) {
 		this.bestelling_ID = bestelling_ID;
