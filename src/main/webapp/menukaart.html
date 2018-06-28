@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <title>menukaart</title>
     <link rel="stylesheet" type="text/css" href="Style.css">
   </head>
@@ -11,11 +12,10 @@
 		<li class="right"><a href='index.html'>uitloggen</a></li>
 	</ul>
     <h1>menukaart</h1>
-    <p>Tafelnummer:<input type="number" name="Tafel" min="1" max="15" placeholder="1" /></p>
+    <p>Tafelnummer:<input type="number" id="tablenumber" name="Tafel" min="1" max="15" placeholder="1" /></p>
     <div id=menuTabel></div>
     <script>
-	    var klantId = localStorage.getItem("Klant_Id");
-		console.log(klantId);
+	    
     
 	    fetch("restservices/bestellen/inzien")
 		    .then(response => response.json())
@@ -24,7 +24,7 @@
 	    	var table = '<tr style="font-weight: bold"><td>Gerecht</td> <td>Prijs</td> <td>Beschrijving</td> <td>Bestellen</td></tr>';
 	    	
 	        for (var r = 0; r < menukaart.length; r++) {
-	          table += '<tr>';
+	          table += '<tr id="' + r +'">';
 	          for(var c = 0; c <= 0; c++){
 	            table += '<td class="gerecht">' + menukaart[r].Gerecht + '</td>';
 	            table += '<td>&euro;' + menukaart[r].Prijs + ',00</td>';
@@ -33,16 +33,25 @@
 	            	table += menukaart[r].beschrijving;
 	            }
 	            table += '</td>';
-	            table += '<td><input type="button" value="bestellen" onclick="bestellen()"></td>';
+	            table += '<td><input type="button" value="bestellen" onclick="bestellen(\''+ menukaart[r].Gerecht + "\', " +  menukaart[r].Prijs +')"></td>';
 	          }
 	          table += '</tr>';
 	        }
 	        document.getElementById("menuTabel").innerHTML += ('<table border="solid 1px" id="menuKaart">' + table + '</table>');
 	    });
 	    
-	    function bestellen() {
-	        var item = $(".menuKaart").find(".gerecht").text();
-    		console.log(item);	// Outputs the answer
+	    function bestellen(gerecht, prijs) {
+	        var klantId = localStorage.getItem("Klant_Id");
+	        var tablenumber = parseInt($("#tablenumber").val());
+	        
+	        var encData = new URLSearchParams();
+	        encData.append("Klant_Id", klantId);
+	        encData.append("Gerecht", klantId);
+	        encData.append("Prijs", prijs);
+	        encData.append("Tafel", tablenumber);
+
+	        fetch("restservices/bestellen/bestellen", { method: 'POST', body: encData})
+	        .then(console.log("success"));
 	    }
     </script>
   </body>
